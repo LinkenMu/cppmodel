@@ -4,7 +4,7 @@ class SharedPtr
 {
 public:
 	SharedPtr(T& t) {
-		object_ = new T(t);
+		object_ = t;
 		used_ = new(int);
 		(*used_) = 1;
 	};//construct
@@ -15,6 +15,7 @@ public:
 
 	SharedPtr(SharedPtr<T>&& t) {
 		delete object_;
+		delete used_;
 		object_ = t.object_;
 		used_ = t.used_;
 
